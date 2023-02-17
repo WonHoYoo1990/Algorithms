@@ -1,2 +1,4 @@
-# Algorithms
-자바로 푸는 알고리즘 연습 공간
+# Java Algorithm
+
+### Introduction
+This repository is intended to learn how to implement common algorithms in java.
