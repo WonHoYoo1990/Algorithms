@@ -9,8 +9,12 @@ public class Run {
 		basic basic = new basic();
 		
 //		basic.method1();
-		basic.method2();
-
+//		basic.method2();
+//		basic.method3();
+//		basic.method4();
+//		basic.method5();
+		basic.method6();
+		
 	}
 
 }
