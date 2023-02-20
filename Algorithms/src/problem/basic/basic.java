@@ -237,8 +237,205 @@ public class basic {
 			}
 		}
 
+	}
+
+	// 문제: 자연수 n을 입력받고, 1부터 n까지의 수 중에서 소수(prime number)인 수들의 합을 구하는 프로그램을 작성하세요.
+	public void method7() {
+//		소수는 1과 자기 자신 이외의 어떤 자연수로도 나눌 수 없는 자연수입니다. 즉, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, ... 등은 
+//		모두 소수입니다.
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("정수 n을 입력 하시오");
+		int n = sc.nextInt();
+
+		int sum = 0;
+
+		for (int i = 2; i <= n; i++) { // 1은 소수가 아니므로 2부터 시작
+			boolean isPrime = true;
+
+			for (int j = 2; j <= Math.sqrt(i); j++) { // Math.sqrt(i)=i의 제곱근
+				if (i % j == 0) {
+					isPrime = false;
+					break;
+				}
+			}
+
+			if (isPrime) { // 소수일 경우만
+				sum += i;
+			}
+
+		}
+		System.out.println(sum);
+	}
+
+	// 문제: 아래와 같은 정수형 배열이 주어졌을 때, 배열의 원소들을 모두 더한 값을 출력하는 함수를 작성하세요.
+	public void method8() {
+//		int[] nums = {2, 5, 8, 11, 3, 6};
+//		위 배열에 대한 예시로, 출력값은 35가 됩니다.
+
+		int[] nums = { 2, 5, 8, 11, 3, 6 };
+
+		// 방법 1
+		int sum = 0;
+
+		for (int i = 0; i < nums.length; i++) {
+			sum += nums[i];
+		}
+		System.out.println(sum);
+
+		// 방법2
+		int result = 0;
+
+		for (int num : nums) {
+			result += num;
+		}
+		System.out.println("result : " + result);
+	}
+
+	// 문제: 아래와 같은 문자열이 주어졌을 때, 해당 문자열의 길이를 출력하는 함수를 작성하세요.
+	public void method9() {
+//		String str = "Hello, world!";
+//		위 문자열에 대한 예시로, 출력값은 13이 됩니다.
+		String str = "Hello, world!";
+
+		System.out.println(str.length());
+	}
+
+	// 문제: 아래와 같은 변수 age가 주어졌을 때, 해당 변수에 담긴 값에 따라 "미성년자", "성인", "노인" 중 하나를 출력하는 함수를
+	// 작성하세요.
+	public void method10() {
+//		int age = 67;
+//		미성년자: 19세 미만
+//		성인: 19세 이상 65세 미만
+//		노인: 65세 이상
+		int age = 67;
+
+		if (age < 19) {
+			System.out.println("미성년자");
+		} else if (age < 65) {
+			System.out.println("성인");
+		} else {
+			System.out.println("노인");
+		}
+	}
+
+	// 문제: 1부터 100까지의 수 중에서, 3의 배수이면서 7의 배수인 수들을 모두 출력하는 함수를 작성하세요.
+	public void method11() {
+//		21
+//		42
+//		63
+//		84
+//		이 중에서 3의 배수이면서 7의 배수인 수는 21, 42, 63, 84입니다.
+
+		for (int i = 1; i <= 100; i++) {
+			if (i % 3 == 0 && i % 7 == 0) {
+				System.out.print(i);
+				if (i < 79) { // 79은 100에서 3과 7의 최소 공배수인 21을 뺀 값입니다.
+					System.out.print(", ");
+				}
+			}
+		}
+	}
+
+	// 문제 : 어떤 수가 소수인지 아닌지 판별하는 프로그램을 작성해보세요. (소수: 1과 자기 자신으로만 나누어 떨어지는 수)
+	public void method12() {
+//		소수는 1과 자기 자신 이외의 어떤 자연수로도 나눌 수 없는 자연수입니다. 즉, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, ... 등은 
+//		모두 소수입니다.
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("정수 입력하시오.");
+		int num = sc.nextInt();
+
+		boolean isPrime = true;
+
+		if (num < 1) {
+			isPrime = false;
+			System.out.println("소수가 아닙니다. 양의 정수만 입력해주세요.");
+		}
+
+		// 2부터 n-1까지의 모든 수에 대해 나누어 떨어지는 수가 있는지 검사
+		for (int i = 2; i < num; i++) {
+			if (num % i == 0) {
+				isPrime = false;
+				break;
+			}
+		}
+
+		System.out.println(num + (isPrime ? " 은 소수입니다." : " 은 소수가 아닙니다."));
+	}
+
+	// 1부터 50까지 숫자 중에서 3의 배수는 "Fizz", 5의 배수는 "Buzz", 3과 5의 공배수는 "FizzBuzz"를 출력하고,
+	// 나머지 숫자는 숫자 그대로 출력하는 프로그램을 작성해보세요.
+	public void method13() {
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("정수 입력하시오.");
+		int num = sc.nextInt();
+
+		if (num < 0) {
+			System.out.println(num + " 은 음수입니다. 양의 정수로 입력해주세요");
+		}
+
+		if (num % 15 == 0 && num <= 50) {
+			System.out.print("FizzBuzz");
+		} else if (num % 3 == 0 && num <= 50) {
+			System.out.print("Fizz");
+		} else if (num % 5 == 0 && num <= 50) {
+			System.out.print("Buzz");
+		} else {
+			System.out.print(num);
+		}
 
 	}
-	
-//	test02
+
+	// 두 개의 정수 n과 m을 입력받아, n부터 m까지의 자연수 중에서 3의 배수만 출력하는 프로그램을 작성해보세요.
+	// (단, for문을 사용하여 작성하세요)
+	public void method14() {
+//		 예시 입력)
+//		 n = 1, m = 20
+//		
+//		 예시 출력)
+//		 3
+//		 6
+//		 9
+//		 12
+//		 15
+//		 18
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("정수 n 입력");
+		int n = sc.nextInt();
+		System.out.println("정수 m 입력");
+		int m = sc.nextInt();
+
+		for (int i = n; i <= m; i++) {
+			if (i % 3 == 0) {
+				System.out.println(i);
+			}
+		}
+	}
+
+	// 1부터 100까지의 숫자 중에서 소수(prime number)인 숫자들을 모두 출력하는 프로그램을 작성해보세요.
+//	(소수: 1과 자기  자신으로만 나누어 떨어지는 수)
+	public void method15() {
+
+		for (int num = 2; num <= 100; num++) {
+			boolean isPrime = true;
+			
+			for (int i = 2; i < num; i++) {
+				if (num % i == 0) {
+					isPrime = false;
+					break;
+				}
+			}
+			if (isPrime) {
+				System.out.print(num + " ");
+			}
+		}
+
+	}
+
 }
