@@ -22,7 +22,10 @@ public class Run {
 //		basic.method12();
 //		basic.method13();
 //		basic.method14();
-		basic.method15();
+//		basic.method15();
+//		basic.method16();
+//		basic.method17();
+		basic.method18();
 		
 	}
 

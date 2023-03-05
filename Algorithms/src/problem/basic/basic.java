@@ -149,7 +149,6 @@ public class basic {
 	}
 
 	private int getGCD(int a, int b) {
-
 		if (b == 0) {
 			return a;
 		} else {
@@ -176,6 +175,12 @@ public class basic {
 		System.out.println("입력: 문자열 S (1 <= S의 길이 <= 100,000)");
 		String s = sc.nextLine();
 
+		// 방법 1
+		StringBuffer sb = new StringBuffer(s);
+		String reverseStr = sb.reverse().toString();
+		System.out.println("reverseStr : " + reverseStr);
+
+		// 방법 2
 		String reversed = reverseString(s);
 
 		System.out.println(reversed);
@@ -419,12 +424,12 @@ public class basic {
 	}
 
 	// 1부터 100까지의 숫자 중에서 소수(prime number)인 숫자들을 모두 출력하는 프로그램을 작성해보세요.
-//	(소수: 1과 자기  자신으로만 나누어 떨어지는 수)
+	// (소수: 1과 자기 자신으로만 나누어 떨어지는 수)
 	public void method15() {
 
 		for (int num = 2; num <= 100; num++) {
 			boolean isPrime = true;
-			
+
 			for (int i = 2; i < num; i++) {
 				if (num % i == 0) {
 					isPrime = false;
@@ -434,6 +439,89 @@ public class basic {
 			if (isPrime) {
 				System.out.print(num + " ");
 			}
+		}
+
+	}
+
+	// 사용자로부터 문자열을 입력받아, 해당 문자열이 회문(palindrome)인지 아닌지를 판별하는 프로그램을 작성해보세요.
+	public void method16() {
+//		회문이란, 앞에서부터 읽으나 뒤에서부터 읽으나 동일한 단어나 구를 말합니다.
+//		예를 들어, "level"이나 "racecar"는 회문입니다.
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("문자열을 입력하세요");
+		String str = sc.nextLine();
+
+		if (isPalindrome(str)) {
+			System.out.println(str + "은(는) 회문입니다.");
+		} else {
+			System.out.println(str + "은(는) 회문이 아닙니다..");
+		}
+
+	}
+
+	public static boolean isPalindrome(String str) {
+		String reversed = new StringBuilder(str).reverse().toString();
+		return str.equals(reversed);
+	}
+
+	// 다음 규칙에 따라 양의 정수를 입력으로 받아 일련의 숫자를 출력하는 프로그램을 작성하세요.
+	public void method17() {
+//		짝수이면 2로 나눈다
+//		홀수이면 3을 곱하고 1을 더한다
+//		출력이 1이 될 때까지 이 과정을 반복한다. 프로그램은 공백으로 구분된 시퀀스의 각 숫자를 출력해야 합니다.
+//
+//		예를 들어 입력이 6이면 출력은 6 3 10 5 16 8 4 2 1이어야 합니다.
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("정수를 입력하세요");
+		int num = sc.nextInt();
+
+		while (num != 1) {
+			System.out.print(num + " ");
+			if (num % 2 == 0) {
+				num = num / 2;
+			} else {
+				num = (num * 3) + 1;
+			}
+		}
+
+		System.out.println(num);
+
+	}
+
+	// 주어진 정수를 이진수로 변환하는 프로그램을 작성하세요.
+	public void method18() {
+//		이진수는 0과 1만으로 이루어진 수입니다. 
+//		주어진 정수를 이진수로 변환하려면, 2로 계속 나누어가며 나머지를 배열이나 스택에 저장하고, 저장된 나머지를 역순으로 출력하면 됩니다.
+
+//		이진수로 변환하는 과정은 다음과 같습니다.
+//		주어진 10진수를 2로 나누고, 나머지를 배열에 저장합니다. 
+//		예를 들어 10을 2로 나누면 몫이 5, 나머지가 0이므로 배열에 0을 저장합니다.
+//		몫이 0이 될 때까지 1번을 반복합니다. 
+//		예를 들어 5를 2로 나누면 몫이 2, 나머지가 1이므로 배열에 1을 저장합니다.
+//		배열에 저장된 나머지를 역순으로 출력하면 이진수를 얻을 수 있습니다.
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("정수를 입력하세요");
+		int decimal = sc.nextInt();
+
+		int[] binary = new int[32]; // 정수 최대 32비트
+
+		int index = 0;
+
+		while (decimal > 0) {
+			binary[index++] = decimal % 2; // 나머지값 배열에 넣고 인덱스 증가
+			decimal = decimal / 2; // 정수 나누기
+		}
+
+		System.out.print("binary number : ");
+
+		for (int i = index - 1; i >= 0; i--) { // 인덱스 역순으로 출력
+			System.out.print(binary[i]);
 		}
 
 	}
